@@ -1,6 +1,6 @@
 # challenge-response-authentication
 Challenge-response protocol using a symmetric key cipher.
-##Procedure:
+## Procedure:
 1. Client sends uername and password.
 2. Server checks if user exists and if he doesn't creates a new user in the database.
 3. The server then generates a random number and sends it to the user.
