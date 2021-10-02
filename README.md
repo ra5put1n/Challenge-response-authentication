@@ -10,6 +10,6 @@
 6. If the results match, the client gets connected else the connection is dropped.
 ## Tech Stack
 
-**Client:** Python 3.8 - Libraries: Socket, OS, Threading, Hashlib
+**Client:** Python 3.8 - Libraries: Socket, Sys, Hashlib
 
-**Server:** Python 3.8 - Libraries: Socket, OS, Threading, Hashlib, Sqlite3
+**Server:** Python 3.8 - Libraries: Socket, Sys, String, Random, Threading, Hashlib, Sqlite3
