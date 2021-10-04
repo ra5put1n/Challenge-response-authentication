@@ -16,21 +16,25 @@ def random_string():
 
 def create_user(db_conn,username,password):
 	cursor = db_conn.cursor()
+	#insert user credentials
 	cursor.execute('insert into usernames (name, password) values (?, ?)', (username, password,))
 	db_conn.commit()
 
 def fetch_user(db_conn,username):
 	cursor = db_conn.cursor() 
+	#fetch user data
 	cursor.execute('select password from usernames where name = ?', (username,))
 	rows = cursor.fetchall()
 	return rows
 
 def new_account(conn,db_conn):
+	#receive username and password
 	username = conn.recv(1024).decode()
 	password = conn.recv(1024).decode()
-# 	print(username,password)
-# 	print(fetch_user(db_conn,username))
+
+	#check if username already exists
 	if fetch_user(db_conn,username) == []:
+		#if not exists, create new user
 		create_user(db_conn,username,password)
 		conn.send("success".encode())
 	else:

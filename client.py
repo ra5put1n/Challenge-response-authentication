@@ -7,10 +7,16 @@ HOST = '127.0.0.1'
 PORT = 6969
 
 def new_account(conn):
+
+    #get username input and send to server
     username = input("Enter username: ")
     conn.send(username.encode())
+
+    #get password input and send to server
     password = input("Enter password: ")
     conn.send(password.encode())
+
+    #check if account creation is successful
     status = conn.recv(1024).decode()
     if(status == "success"):
         print("Account successfully created.")
