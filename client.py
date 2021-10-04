@@ -3,7 +3,7 @@ import socket
 import sys
 import hashlib
 
-HOST = ''
+HOST = '127.0.0.1'
 PORT = 6969
 
 def new_account(conn):
@@ -21,6 +21,10 @@ def login(conn):
     username = input("Enter username: ")
     password = input("Enter password: ")
     conn.send(username.encode())
+    status = conn.recv(1024).decode()
+    if status == "no_acc":
+        print("Account not found! Make an account")
+        sys.exit()
     rand_str = conn.recv(1024).decode()
     auth_string = hashlib.md5((password+rand_str).encode())
     conn.send(auth_string.hexdigest().encode())

@@ -40,6 +40,13 @@ def login(conn,db_conn):
 
 	username = conn.recv(1024).decode()
 	user_data = fetch_user(db_conn,username)
+	if user_data == []:
+		conn.send("no_acc".encode())
+		conn.close()
+		return
+	else:
+		conn.send("proceed".encode())
+	
 	password = user_data[0][0]
 	rand_str = random_string()
 	conn.send(rand_str.encode())
