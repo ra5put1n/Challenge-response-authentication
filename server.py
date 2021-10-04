@@ -28,8 +28,8 @@ def fetch_user(db_conn,username):
 def new_account(conn,db_conn):
 	username = conn.recv(1024).decode()
 	password = conn.recv(1024).decode()
-	print(username,password)
-	print(fetch_user(db_conn,username))
+# 	print(username,password)
+# 	print(fetch_user(db_conn,username))
 	if fetch_user(db_conn,username) == []:
 		create_user(db_conn,username,password)
 		conn.send("success".encode())
